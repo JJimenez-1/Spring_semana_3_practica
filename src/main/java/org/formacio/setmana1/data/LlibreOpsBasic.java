@@ -76,7 +76,13 @@ public class LlibreOpsBasic {
 	 * (Aquest metode no llanca excepcions!)
 	 */
 	public boolean existeix (String isbn) {
-		return false;
+		try { 
+			Llibre exemplar = this.carrega(isbn);
+			return true;
+		}
+		catch (LlibreNoExisteixException e) {
+			return false;
+		}
 	}
 
 	/**
