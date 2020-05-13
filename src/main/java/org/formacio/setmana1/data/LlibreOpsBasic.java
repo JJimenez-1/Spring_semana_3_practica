@@ -3,6 +3,7 @@ package org.formacio.setmana1.data;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import org.formacio.setmana1.domini.Llibre;
 import org.formacio.setmana1.domini.Recomanacio;
@@ -34,7 +35,15 @@ public class LlibreOpsBasic {
 	/**
 	 * Sense sorpreses: dona d'alta un nou llibre amb les propietats especificaques
 	 */
+	@Transactional
 	public void alta (String isbn, String autor, Integer pagines, Recomanacio recomanacio, String titol) {
+		Llibre exemplar = new Llibre();
+		exemplar.setIsbn(isbn);
+		exemplar.setAutor(autor);
+		exemplar.setPagines(pagines);
+		exemplar.setRecomanacio(recomanacio);
+		exemplar.setTitol(titol);
+		em.persist(exemplar);
 	}
 	
 	/**
